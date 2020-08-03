@@ -16,6 +16,6 @@ public class HomePageController {
 	 @RequestMapping(value = "/showHomepage", method = RequestMethod.GET)
 	 public String homepage()
 	 {
-		 return "test";
+		 return "guest/index";
 	 }
 }
