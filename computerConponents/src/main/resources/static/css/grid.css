@@ -1,0 +1,57 @@
+/* .giaodien {
+    width: 900px;
+    height: auto;
+    margin: auto;
+}
+.khoi img {
+    width: 100%;
+}
+.khoi {
+    width: 120px;
+    float: left;
+    height: 250px;
+    margin: 29px;
+    text-align: center;
+}
+.khoi a {
+    color: black;
+    font-family: segoe il light;
+    text-decoration: none;
+    font-size: 21px;
+} */
+/* .giaodien {
+    width: 900px;
+    height: auto;
+    margin: auto;
+}
+.khoi img {
+    width: 100%;
+}
+.khoi {
+    width: 120px;
+    float: left;
+    height: 250px;
+    margin: 29px;
+    text-align: center;
+}
+.khoi a {
+    color: black;
+    font-family: segoe il light;
+    text-decoration: none;
+    font-size: 21px;
+} */
+.noidung {
+    padding: 100px 0;
+}
+.cangiua {
+    width: 917px;
+    margin: auto;
+}
+.anh {
+    width: 15%;
+    float: left;
+    margin-right: 5%;
+}
+.anh:nth-child(5n + 5) {
+    margin: 0;
+}

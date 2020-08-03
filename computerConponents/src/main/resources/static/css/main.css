@@ -1,0 +1,31 @@
+.title-sp h3 {
+    width: auto;
+    float: left;
+    margin-top: 87px;
+    padding-right: 13px;
+    text-transform: uppercase;
+}
+.title-sp .duong-line-sp {
+    border: 1px solid #25883b;
+    height: 1px;
+    margin-top: 103px;
+    overflow: hidden;
+    border-radius: 19px;
+}
+span.amount {
+    color: #25883b;
+    font-size: 17px;
+}
+.amount strike {
+    color: #db2c2c;
+    font-size: 17px;
+}
+.back_product {
+    width: max-content;
+}
+.viewmore {
+    position: absolute;
+    left: 50%;
+    top: 104%;
+    transform: translate(-50%, -50%);
+}
