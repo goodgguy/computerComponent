@@ -1,6 +1,8 @@
 package com.computer.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 
@@ -20,7 +22,10 @@ public class Loaithanhtoan implements Serializable {
 
 	@Column(name="LOAITHANHTOAN")
 	private String loaithanhtoan;
-
+	
+	 @OneToMany(mappedBy = "loaithanhtoan", cascade = CascadeType.ALL)
+	    private Collection<Hoadon> hoadon;
+	
 	public Loaithanhtoan() {
 	}
 
@@ -38,6 +43,14 @@ public class Loaithanhtoan implements Serializable {
 
 	public void setLoaithanhtoan(String loaithanhtoan) {
 		this.loaithanhtoan = loaithanhtoan;
+	}
+
+	public Collection<Hoadon> getHoadon() {
+		return hoadon;
+	}
+
+	public void setHoadon(Collection<Hoadon> hoadon) {
+		this.hoadon = hoadon;
 	}
 
 }

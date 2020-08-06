@@ -1,6 +1,8 @@
 package com.computer.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 
@@ -20,6 +22,9 @@ public class Danhmucsanpham implements Serializable {
 
 	@Column(name="TENDANHMUCSP")
 	private String tendanhmucsp;
+	
+	@OneToMany(mappedBy = "danhmucsp", cascade = CascadeType.ALL)
+    private Collection<Sanpham> sanpham;
 
 	public Danhmucsanpham() {
 	}
@@ -39,5 +44,14 @@ public class Danhmucsanpham implements Serializable {
 	public void setTendanhmucsp(String tendanhmucsp) {
 		this.tendanhmucsp = tendanhmucsp;
 	}
+
+	public Collection<Sanpham> getSanpham() {
+		return sanpham;
+	}
+
+	public void setSanpham(Collection<Sanpham> sanpham) {
+		this.sanpham = sanpham;
+	}
+	
 
 }

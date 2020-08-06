@@ -1,9 +1,13 @@
 package com.computer.entity;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
  
@@ -32,8 +36,20 @@ public class AppUser {
     
     @Column(name = "CMND_USER", length = 20, nullable = true)
     private String cmnd_user;
- 
-    public String getSdt_user() {
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
+    private Collection<Hoadon> hoadon;
+    
+    
+    public Collection<Hoadon> getHoadon() {
+		return hoadon;
+	}
+
+	public void setHoadon(Collection<Hoadon> hoadon) {
+		this.hoadon = hoadon;
+	}
+
+	public String getSdt_user() {
 		return sdt_user;
 	}
 
