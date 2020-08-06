@@ -22,9 +22,6 @@ public class Chitietkythuat implements Serializable {
 	@Column(name="CHITIETKT")
 	private String chitietkt;
 
-	@Column(name="IDSP")
-	private int idsp;
-
 	@Lob
 	@Column(name="TENKT")
 	private String tenkt;
@@ -51,15 +48,6 @@ public class Chitietkythuat implements Serializable {
 	public void setChitietkt(String chitietkt) {
 		this.chitietkt = chitietkt;
 	}
-
-	public int getIdsp() {
-		return this.idsp;
-	}
-
-	public void setIdsp(int idsp) {
-		this.idsp = idsp;
-	}
-
 	public String getTenkt() {
 		return this.tenkt;
 	}

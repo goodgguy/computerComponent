@@ -19,9 +19,6 @@ public class Hinhsanpham implements Serializable {
 	@Column(name="IDHINHSP")
 	private int idhinhsp;
 
-	@Column(name="IDSP")
-	private int idsp;
-
 	@Lob
 	@Column(name="URL_HINHSP")
 	private String urlHinhsp;
@@ -39,14 +36,6 @@ public class Hinhsanpham implements Serializable {
 
 	public void setIdhinhsp(int idhinhsp) {
 		this.idhinhsp = idhinhsp;
-	}
-
-	public int getIdsp() {
-		return this.idsp;
-	}
-
-	public void setIdsp(int idsp) {
-		this.idsp = idsp;
 	}
 
 	public String getUrlHinhsp() {
