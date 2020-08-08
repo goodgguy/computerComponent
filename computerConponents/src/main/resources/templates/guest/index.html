@@ -49,7 +49,7 @@
                         <!-- Logo -->
                         <div id="logo" class="flex-col logo">
                             <!-- Header logo -->
-                            <a href="https://tanthanhdanh.vn/"
+                            <a th:href="@{/showHomepage}"
                                 title="Tân Thành Danh Computer - Máy tính cao cấp,máy tính đồ họa,ghế gaming,PC hi-end dựng phim,pc streaming"
                                 rel="home">
                                 <img width="198" height="127" th:src="@{/image/tuanhoanglogo.png}"
@@ -356,168 +356,16 @@
                         <!--GRID SAN PHAM START-->
                         <div class="noidung">
                             <div class="cangiua">
+                             <th:block th:each="sp : ${sanpham}">
                                 <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
+                                    <a th:href="@{'/product/'+${sp.idsp}}"><img
+                                            th:src="${sp.anhchinh}"
                                             alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
+                                        <h3 class="title-sp" th:text="${sp.tensp}" style="word-wrap: break-word;"></h3>
+                                        <strong th:text="${sp.giasp}+' '+ VNĐ" style="color: green;"></strong>
                                     </a>
                                 </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a href="#"><img
-                                            src="https://tanthanhdanh.vn/wp-content/uploads/2020/07/LG-UltraGear-27GN950-B-Gaming-Monitor-2-280x280.jpg"
-                                            alt="">
-                                        <h3 style="word-wrap: break-word;">asdadasdas</h3>
-                                        <strong style="color: green;">99.000.000 VNĐ</strong>
-                                    </a>
-                                </div>
-
-
+                                 </th:block>
                             </div>
                         </div>
                         <!--GRID NOI DUNG END-->
