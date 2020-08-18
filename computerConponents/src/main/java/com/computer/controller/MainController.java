@@ -2,6 +2,8 @@ package com.computer.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.computer.utils.Common;
 import com.computer.utils.WebUtils;
  
 @Controller
@@ -39,7 +42,9 @@ public class MainController {
     }
  
     @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-    public String logoutSuccessfulPage(Model model) {
+    public String logoutSuccessfulPage(Model model,HttpSession session) {
+    	session.removeAttribute(Common.USER_SESSION);
+    	session.removeAttribute(Common.Cart_SESSION);
         model.addAttribute("title", "Logout");
         return "logoutSuccessfulPage";
     }

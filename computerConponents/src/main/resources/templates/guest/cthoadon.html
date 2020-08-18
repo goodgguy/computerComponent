@@ -68,7 +68,7 @@
                     <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
 
                         <!-- Logo -->
-                         <div id="logo" class="flex-col logo">
+                        <div id="logo" class="flex-col logo">
                             <!-- Header logo -->
                             <a th:href="@{/showHomepage}"
                                 title="Tân Thành Danh Computer - Máy tính cao cấp,máy tính đồ họa,ghế gaming,PC hi-end dựng phim,pc streaming"
@@ -77,7 +77,8 @@
                                     class="header_logo header-logo" alt="Tân Thành Danh Computer"><img width="198"
                                     height="127" th:src="@{/image/tuanhoanglogo.png}" class="header-logo-dark"
                                     alt="Tân Thành Danh Computer"></a>
-                        </div>                        <!-- Left Elements -->
+                        </div>
+                        <!-- Left Elements -->
                         <div class="flex-col hide-for-medium flex-left
                           flex-grow">
                             <ul class="header-nav header-nav-main nav nav-left  nav-uppercase">
@@ -319,7 +320,7 @@
                                     <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                                 </ol>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
+                                   <div class="carousel-item active">
                                         <img class="d-block w-100"
                                             th:src="${hinhanhtrang.hinhslideshow1}"
                                             alt="First slide">
@@ -354,7 +355,7 @@
                         </div>
                         <!--Slide 2-->
                         <div>
-                            <div class="row">
+                             <div class="row">
                                 <div class="col-md p-0">
                                     <img class="wow animate__animated animate__flipInY" data-wow-duration="2s"
                                         th:src="${hinhanhtrang.header1}"
@@ -367,72 +368,64 @@
                                         alt="">
                                 </div>
                             </div>
-
                         </div>
-                        <!--GRID SAN PHAM START-->
-                        <div class="title-sp">
-                            <h3 th:text="${cate}" style="margin-top: -13px;"></h3>
-                            <div class="duong-line-sp"></div>
-                        </div>
-                        <div class="noidung">
-                            <div class="cangiua">
-                                <th:block th:each="sp : ${sanpham}">
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
-                                    <a th:href="@{'/product/'+${sp.idsp}}"><img
-                                            th:src="${sp.anhchinh}"
+                    </div>
+                </div>
+            </div>
+            <!--GIO HANG START-->
+            <div class="row">
+                <div class="title-sp">
+                    <h3>Sản Phẩm</h3>
+                    <div class="duong-line-sp"></div>
+                </div>
+                <div class="col large-8">
+                    <!--GIO HANG-->
+                    <table class="table">
+                        <tbody>
+                            <!--SAN PHAM-->
+                            <th:block th:each="ct : ${cthd}">
+                            <tr>
+                                <!--IMAGE-->
+                                <td class="image_cart">
+                                    <a th:href="@{'/product/'+${ct.sanpham.idsp}}">
+                                        <img width="80 " height="80"
+                                            th:src="${ct.sanpham.anhchinh}"
                                             alt="">
-                                        <h3 class="title-sp" th:text="${sp.tensp}" style="word-wrap: break-word;"></h3>
-                                        
-                                    
-                                        
-                                        <div th:if="${sp.giagoc} == 0">
-                                                <strong th:inline="text" style="color: green;">
-                                                [[${#numbers.formatDecimal(sp.giasp, 0, 'POINT', 0, 'COMMA')}]] VNĐ</strong>
-                                        </div>
-                                        <div th:if="${sp.giagoc} != 0">
-                                                 <div class="product-price">
-                                               <span class="amount"><strike th:inline="text">
-                                               [[${#numbers.formatDecimal(sp.giagoc, 0, 'POINT', 0, 'COMMA')}]] VNĐ</strike></span>
-                                                  </div>
-                                        <strong
-                                        th:inline="text" style="color: green;">[[${#numbers.formatDecimal(sp.giasp, 0, 'POINT', 0, 'COMMA')}]] VNĐ</strong>
-                                        </div>
                                     </a>
-                                </div>
-                                 </th:block>
-                            </div>
-                        </div>
-                        <!--GRID NOI DUNG END-->
-                        <div class="row viewmore wow animate__animated animate__fadeInUp">
-                            <button type="button" class="btn btn-success">View More</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--HINH QUANG CAO DUOI-->
-            <div class="container" style="margin-top:6em;">
-                <div class="row mb-4">
-                    <img class="wow animate__animated animate__fadeInUp" data-wow-delay=0.4s data-wow-duration="1s"
-                        th:src="${hinhanhtrang.footer1}"
-                        alt="">
-                </div>
-                <div class="row mb-4">
-                    <div class="col-6">
-                        <img class="wow animate__animated animate__fadeInUp" data-wow-duration="1s"
-                            th:src="${hinhanhtrang.footer2}"
-                            alt="">
+                                </td>
+                                <!--NOIDUNG CART-->
+                                <td class="content_cart">
+                                    <a th:href="@{'/product/'+${ct.sanpham.idsp}}" th:text="${ct.sanpham.tensp}"></a>
+                                    <div class="product-price">
+                                        <span class="amount" th:inline="text"> [[${#numbers.formatDecimal(ct.tonggia, 0, 'POINT', 2, 'COMMA')}]] VNĐ</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </th:block>
+                            <!--NUT CAP NHAT GIO HANG VA TIEP TUC MUA HANG-->
+                        </tbody>
+                    </table>
 
-                    </div>
-                    <div class="col-6">
-                        <img class="wow animate__animated animate__fadeInUp" data-wow-duration="1s"
-                            th:src="${hinhanhtrang.footer3}"
-                            alt="">
-                    </div>
+                </div>
+                <!--NUT THANH TOAN-->
+                <div class="col large-4">
+                    <h2>Tổng tiền</h2>
+
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Tổng</th>
+                                <td><strong><span th:inline="text">[[${#numbers.formatDecimal(tonggiahd, 0, 'POINT', 2, 'COMMA')}]] VNĐ</span></strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+            <!--GIO HANG END-->
         </main>
+
         <!--FOOTER BODY-->
-        <footer id="footer" class="footer-wrapper">
+        <footer id="footer" class="footer-wrapper mt-5">
             <section class="section section-footer" id="section_1296877948">
                 <div class="bg section-bg fill bg-fill bg-loaded bg-loaded">
                 </div>

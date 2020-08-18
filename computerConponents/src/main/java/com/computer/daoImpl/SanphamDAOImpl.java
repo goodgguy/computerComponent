@@ -37,4 +37,13 @@ public class SanphamDAOImpl implements SanphamDAO{
 		return entityManager.find(Sanpham.class, id);
 	}
 
+	@Override
+	public ArrayList<Sanpham> getListSanphamtheoCate(int id,int pageNumber, int pageSize) {
+		Query query = entityManager.createQuery("Select e from Sanpham e Where e.danhmucsp.iddanhmucsp="+id);
+		query.setFirstResult((pageNumber-1) * pageSize); 
+		query.setMaxResults(pageSize);
+		ArrayList <Sanpham> listSanpham = (ArrayList<Sanpham>) query.getResultList();
+		return listSanpham;
+	}
+
 }

@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,7 +19,7 @@ import javax.persistence.UniqueConstraint;
 public class AppUser {
  
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "User_Id", nullable = false)
     private Long userId;
  
@@ -36,10 +37,20 @@ public class AppUser {
     
     @Column(name = "CMND_USER", length = 20, nullable = true)
     private String cmnd_user;
-
+    
+    @Column(name = "DIACHIGIAOHANG",nullable = true)
+    private String diachi;
+    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
     private Collection<Hoadon> hoadon;
     
+    public String getDiachi() {
+		return diachi;
+	}
+
+	public void setDiachi(String diachi) {
+		this.diachi = diachi;
+	}    
     
     public Collection<Hoadon> getHoadon() {
 		return hoadon;

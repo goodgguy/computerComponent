@@ -20,6 +20,13 @@ public class SanphamDTO {
 	private Danhmucsanpham danhmucsp;
 	private List<Chitietkythuat> chitietkythuat;
 	private List<Hinhsanpham> hinhsanpham;
+	private double giagoc;
+	public double getGiagoc() {
+		return giagoc;
+	}
+	public void setGiagoc(double giagoc) {
+		this.giagoc = giagoc;
+	}
 	public int getIdsp() {
 		return idsp;
 	}

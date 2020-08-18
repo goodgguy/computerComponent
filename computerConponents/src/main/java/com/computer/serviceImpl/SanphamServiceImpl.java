@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.computer.dao.SanphamDAO;
 import com.computer.entity.Sanpham;
 import com.computer.model.SanphamDTO;
+import com.computer.service.CtkhuyenmaiService;
 import com.computer.service.SanphamService;
 
 @Service
@@ -16,6 +17,9 @@ import com.computer.service.SanphamService;
 public class SanphamServiceImpl implements SanphamService{
 	@Autowired
 	SanphamDAO sanphamDAO;
+	
+	@Autowired
+	CtkhuyenmaiService ctkhuyenmaiService;
 	
 	@Override
 	public ArrayList<SanphamDTO> getListSanpham(int pageNumber, int pageSize) {
@@ -26,7 +30,6 @@ public class SanphamServiceImpl implements SanphamService{
 			SanphamDTO dto=new SanphamDTO();
 			dto.setIdsp(sp.getIdsp());
 			dto.setTensp(sp.getTensp());
-			dto.setGiasp(sp.getGiasp());
 			dto.setMotasp(sp.getMotasp());
 			dto.setSoluongsp(sp.getSoluongsp());
 			dto.setAnhchinh(sp.getAnhchinh());
@@ -34,6 +37,18 @@ public class SanphamServiceImpl implements SanphamService{
 			dto.setDanhmucsp(sp.getDanhmucsp());
 			dto.setChitietkythuat(sp.getChitietkythuat());
 			dto.setHinhsanpham(sp.getHinhsanpham());
+			//Xu Lý DISCOUNT
+			int discount=ctkhuyenmaiService.getDiscountProduct(sp.getIdsp());
+			if(discount==0)
+			{
+				dto.setGiagoc(0);
+				dto.setGiasp(sp.getGiasp());
+			}else
+			{
+				double gia=sp.getGiasp();
+				dto.setGiagoc(gia);
+				dto.setGiasp(gia-(gia*discount)/100);
+			}
 			dtos.add(dto);
 		}
 		return dtos;
@@ -45,7 +60,6 @@ public class SanphamServiceImpl implements SanphamService{
 		SanphamDTO dto=new SanphamDTO();
 		dto.setIdsp(sp.getIdsp());
 		dto.setTensp(sp.getTensp());
-		dto.setGiasp(sp.getGiasp());
 		dto.setMotasp(sp.getMotasp());
 		dto.setSoluongsp(sp.getSoluongsp());
 		dto.setAnhchinh(sp.getAnhchinh());
@@ -53,7 +67,52 @@ public class SanphamServiceImpl implements SanphamService{
 		dto.setDanhmucsp(sp.getDanhmucsp());
 		dto.setChitietkythuat(sp.getChitietkythuat());
 		dto.setHinhsanpham(sp.getHinhsanpham());
+		//Xu Lý DISCOUNT
+		int discount=ctkhuyenmaiService.getDiscountProduct(sp.getIdsp());
+		if(discount==0)
+		{
+			dto.setGiagoc(0);
+			dto.setGiasp(sp.getGiasp());
+		}else
+		{
+			double gia=sp.getGiasp();
+			dto.setGiagoc(gia);
+			dto.setGiasp(gia-(gia*discount)/100);
+		}
 		return dto;
+	}
+
+	@Override
+	public ArrayList<SanphamDTO> getListSanphamtheoCate(int id, int pageNumber, int pageSize) {
+		ArrayList<Sanpham> listSanpham=sanphamDAO.getListSanphamtheoCate(id, pageNumber, pageSize);
+		ArrayList<SanphamDTO> dtos=new ArrayList<SanphamDTO>();
+		for(Sanpham sp:listSanpham)
+		{
+			SanphamDTO dto=new SanphamDTO();
+			dto.setIdsp(sp.getIdsp());
+			dto.setTensp(sp.getTensp());
+			dto.setMotasp(sp.getMotasp());
+			dto.setSoluongsp(sp.getSoluongsp());
+			dto.setAnhchinh(sp.getAnhchinh());
+			dto.setIdhsx(sp.getIdhsx());
+			dto.setDanhmucsp(sp.getDanhmucsp());
+			dto.setChitietkythuat(sp.getChitietkythuat());
+			dto.setHinhsanpham(sp.getHinhsanpham());
+			//Xu Lý DISCOUNT
+			int discount=ctkhuyenmaiService.getDiscountProduct(sp.getIdsp());
+			if(discount==0)
+			{
+				dto.setGiagoc(0);
+				dto.setGiasp(sp.getGiasp());
+			}else
+			{
+				double gia=sp.getGiasp();
+				dto.setGiagoc(gia);
+				dto.setGiasp(gia-(gia*discount)/100);
+			}
+			dtos.add(dto);
+		}
+		return dtos;
 	}
 
 }

@@ -27,6 +27,13 @@ public class AppUserDAO {
             return null;
         }
     }
+    public AppUser getUser(String username)
+    {
+    	Query query = entityManager.createQuery("Select e from AppUser e Where e.userName= :name",AppUser.class);
+    	query.setParameter("name",username);
+    	AppUser appuser=(AppUser) query.getSingleResult();
+    	return appuser;
+    }
  
 }
 

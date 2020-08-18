@@ -50,7 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         // Trang /userInfo yêu cầu phải login với vai trò ROLE_USER hoặc ROLE_ADMIN.
         // Nếu chưa login, nó sẽ redirect tới trang /login.
         http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-//        http.authorizeRequests().antMatchers("/homepage/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/addCart/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/showCart/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/showhoadon/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
  
         // Trang chỉ dành cho ADMIN
         http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
@@ -65,12 +67,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 // Submit URL của trang login
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .loginPage("/login")//
-                .defaultSuccessUrl("/userAccountInfo")//
+                .defaultSuccessUrl("/showHomepage")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Cấu hình cho Logout Page.
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/showHomepage");
  
         // Cấu hình Remember Me.
         http.authorizeRequests().and() //
