@@ -22,6 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.computer.service.*;
 import com.computer.utils.Common;
+import com.computer.utils.EncrytedPasswordUtils;
 import com.computer.utils.WebUtils;
 import com.computer.entity.AppUser;
 import com.computer.entity.Loaithanhtoan;
@@ -50,6 +51,9 @@ public class HomePageController {
 	
 	@Autowired
 	private CthoadonService cthoadonService;
+	
+	@Autowired
+	private UserRoleService userroleService;
 	
 	 @RequestMapping(value = "/showHomepage", method = RequestMethod.GET)
 	 public String homepage(ModelMap map)
@@ -340,7 +344,28 @@ public class HomePageController {
 	 }
 	 
 	 
-	 
+	 @RequestMapping(value = "/signup", method = RequestMethod.POST)
+	 public RedirectView signup(
+			 @RequestParam(value = "username", required = false) String username,
+             @RequestParam(value = "password", required = false) String password,
+             @RequestParam(value = "phone", required = false) String phone,
+             @RequestParam(value = "identityCard", required = false) String identityCard,
+	         @RequestParam(value = "address", required = false) String address)
+	 {
+		 AppUserDTO appuserDTO=new AppUserDTO();
+		 appuserDTO.setUserName(username);
+		 appuserDTO.setSdt_user(phone);
+		 appuserDTO.setCmnd_user(identityCard);
+		 appuserDTO.setDiachi(address);
+		 String passenryted=EncrytedPasswordUtils.encrytePassword(password);
+		 appuserDTO.setEncrytedPassword(passenryted);
+		 appuserDTO.setEnabled(true);
+		 appuserService.addUser(appuserDTO);
+		 //ADD ROLE
+		 AppUserDTO appuserDTObefore=appuserService.getUser(username);
+		 userroleService.addRole(appuserDTObefore.getUserId(), Common.ROLE_USER);
+		 return new RedirectView("/login");
+	 }
 	 
 	 @RequestMapping(value = "/test", method = RequestMethod.GET)
 	 public RedirectView test(

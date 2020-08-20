@@ -27,5 +27,19 @@ public class AppUserServiceImpl implements AppUserService{
 		dto.setHoadon(user.getHoadon());
 		return dto;
 	}
+	@Override
+	public boolean addUser(AppUserDTO dto) {
+		AppUser user=new AppUser();
+		user.setUserId(dto.getUserId());
+		user.setUserName(dto.getUserName());
+		user.setEncrytedPassword(dto.getEncrytedPassword());
+		user.setEnabled(dto.isEnabled());
+		user.setSdt_user(dto.getSdt_user());
+		user.setCmnd_user(dto.getCmnd_user());
+		user.setDiachi(dto.getDiachi());
+		user.setHoadon(dto.getHoadon());
+		appuserDAO.addUser(user);
+		return true;
+	}
 
 }

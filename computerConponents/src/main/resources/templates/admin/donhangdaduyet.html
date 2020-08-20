@@ -128,8 +128,8 @@ The above copyright notice and this permission notice shall be included in all c
         <tbody>
         <th:block th:each="hd : ${dtos}">
           <tr>
-            <th><a href="#" th:text="${hd.idhd}"></a></th>
-            <td><a href="#" th:text="${hd.user.userName}"></a></td>
+            <th><a th:href="@{'/admin/infodonhang/'+${hd.idhd}+'/'+${hd.user.userName}}" th:text="${hd.idhd}"></a></th>
+            <td><a th:href="@{'/admin/infodonhang/'+${hd.idhd}+'/'+${hd.user.userName}}" th:text="${hd.user.userName}"></a></td>
             <td th:text=${hd.ngaymua}></td>
             <td th:text=${hd.loaithanhtoan.loaithanhtoan}></td>
             <td><a th:href="@{'/admin/huyhddaxacnhan/'+${hd.idhd}}" type="button" class="btn btn-danger">Hủy</a></td>

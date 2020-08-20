@@ -34,6 +34,11 @@ public class AppUserDAO {
     	AppUser appuser=(AppUser) query.getSingleResult();
     	return appuser;
     }
- 
+    
+    public boolean addUser(AppUser user)
+    {
+    	entityManager.persist(user);
+    	return true;
+    }
 }
 
