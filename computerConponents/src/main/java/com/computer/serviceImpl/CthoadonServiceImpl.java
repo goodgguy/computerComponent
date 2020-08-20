@@ -88,4 +88,9 @@ public class CthoadonServiceImpl implements CthoadonService{
 		return dtos;
 	}
 
+	@Override
+	public boolean checkQuantity(int idsp,int soluong)
+	{
+		return cthoadonDAO.checkQuantity(idsp,soluong);
+	}
 }

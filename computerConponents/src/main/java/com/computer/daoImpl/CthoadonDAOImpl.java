@@ -52,6 +52,12 @@ public class CthoadonDAOImpl implements CthoadonDAO{
 	@Override
 	public boolean checkQuantity(int idsp,int soluong)
 	{
-		String jql="Select e from Cthoadon e Where e.sanpham.soluongsp";
+		String jql="Select e from Cthoadon e Where e.sanpham.soluongsp >"+soluong+"AND e.sanpham.idsp="+idsp;
+		Query query = entityManager.createQuery(jql);
+		if(query.getResultList()!=null)
+		{
+			return true;
+		}
+		return false;
 	}
 }

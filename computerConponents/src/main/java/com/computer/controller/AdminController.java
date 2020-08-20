@@ -22,9 +22,13 @@ import com.computer.utils.Common;
 public class AdminController {
 	@Autowired
 	HoadonService hoadonService;
+
+	@Autowired
+	CthoadonService cthoadonService;
 	
 	@RequestMapping(value = "/duyetdonhang", method = RequestMethod.GET)
 	public String duyedonhang(ModelMap map) {
+		//GET HOADON
 		List<HoadonDTO> dtos=hoadonService.getCtPending(Long.parseLong("-1"));
 		map.addAttribute("dtos", dtos);
 		return "admin/duyetdonhang";

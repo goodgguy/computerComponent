@@ -11,4 +11,5 @@ public interface CthoadonService {
 	public List<CthoadonDTO> getCtPending();
 	public List<CthoadonDTO> getCtConfirmed();
 	public List<CthoadonDTO> getCtbyIdHoadon(int idhd);
+	public boolean checkQuantity(int idsp,int soluong);
 }
