@@ -49,9 +49,9 @@ public class CthoadonDAOImpl implements CthoadonDAO{
 		ArrayList<Cthoadon> list=(ArrayList<Cthoadon>) query.getResultList();
 		return list;
 	}
-
-
-	
-	
-
+	@Override
+	public boolean checkQuantity(int idsp,int soluong)
+	{
+		String jql="Select e from Cthoadon e Where e.sanpham.soluongsp";
+	}
 }

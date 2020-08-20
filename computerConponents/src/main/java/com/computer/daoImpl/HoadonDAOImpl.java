@@ -86,5 +86,4 @@ public class HoadonDAOImpl implements HoadonDAO{
 		ArrayList<Hoadon> list=(ArrayList<Hoadon>) query.getResultList();
 		return list;
 	}
-
 }
