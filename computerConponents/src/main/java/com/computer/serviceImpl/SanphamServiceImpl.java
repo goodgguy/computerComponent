@@ -115,4 +115,36 @@ public class SanphamServiceImpl implements SanphamService{
 		return dtos;
 	}
 
+	@Override
+	public boolean truSoluong(SanphamDTO spdto, int soluong) {
+		Sanpham sp=new Sanpham();
+		sp.setIdsp(spdto.getIdsp());
+		sp.setTensp(spdto.getTensp());
+		sp.setMotasp(spdto.getMotasp());
+		sp.setSoluongsp(spdto.getSoluongsp());
+		sp.setAnhchinh(spdto.getAnhchinh());
+		sp.setIdhsx(spdto.getIdhsx());
+		sp.setDanhmucsp(spdto.getDanhmucsp());
+		sp.setChitietkythuat(spdto.getChitietkythuat());
+		sp.setHinhsanpham(spdto.getHinhsanpham());
+		sanphamDAO.truSoluong(sp, soluong);
+		return true;
+	}
+
+	@Override
+	public boolean congSoluong(SanphamDTO spdto, int soluong) {
+		Sanpham sp=new Sanpham();
+		sp.setIdsp(spdto.getIdsp());
+		sp.setTensp(spdto.getTensp());
+		sp.setMotasp(spdto.getMotasp());
+		sp.setSoluongsp(spdto.getSoluongsp());
+		sp.setAnhchinh(spdto.getAnhchinh());
+		sp.setIdhsx(spdto.getIdhsx());
+		sp.setDanhmucsp(spdto.getDanhmucsp());
+		sp.setChitietkythuat(spdto.getChitietkythuat());
+		sp.setHinhsanpham(spdto.getHinhsanpham());
+		sanphamDAO.congSoluong(sp, soluong);
+		return true;
+	}
+
 }

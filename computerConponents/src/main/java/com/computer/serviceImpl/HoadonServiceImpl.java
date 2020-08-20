@@ -95,4 +95,16 @@ public class HoadonServiceImpl implements HoadonService{
 		return dtos;
 	}
 
+	@Override
+	public HoadonDTO getById(int idhd) {
+		Hoadon hd=hoadonDAO.getById(idhd);
+		HoadonDTO dto=new HoadonDTO();
+		dto.setIdhd(hd.getIdhd());
+		dto.setTinhtrang(hd.getTinhtrang());
+		dto.setNgaymua(hd.getNgaymua());
+		dto.setLoaithanhtoan(hd.getLoaithanhtoan());
+		dto.setUser(hd.getUser());
+		return dto;
+	}
+
 }

@@ -29,7 +29,7 @@ public class HoadonDAOImpl implements HoadonDAO{
 
 	@Override
 	public Hoadon getNewestHoadon() {
-		String jql ="Select f from Hoadon as f order by f.idhd desc";
+		String jql ="Select f from Hoadon as f order by f.ngaymua desc";
 		Query query = entityManager.createQuery (jql,Hoadon.class);
 		Hoadon hd=(Hoadon) query.setMaxResults(1).getResultList().get(0);
 		return hd;
@@ -40,10 +40,10 @@ public class HoadonDAOImpl implements HoadonDAO{
 		String jql="";
 		if(iduser==-1)
 		{
-			jql="Select e from Hoadon e Where e.tinhtrang=0";
+			jql="Select e from Hoadon e Where e.tinhtrang=0 ORDER BY e.ngaymua desc";
 		}else
 		{
-			jql="Select e from Hoadon e Where e.tinhtrang=0 AND e.user.userId= "+iduser;
+			jql="Select e from Hoadon e Where e.tinhtrang=0 AND e.user.userId= "+iduser +" ORDER BY e.ngaymua desc";
 		}
 		Query query = entityManager.createQuery(jql);
 		ArrayList<Hoadon> list=(ArrayList<Hoadon>) query.getResultList();
@@ -55,10 +55,10 @@ public class HoadonDAOImpl implements HoadonDAO{
 		String jql="";
 		if(iduser==-1)
 		{
-			jql="Select e from Hoadon e Where e.tinhtrang=1";
+			jql="Select e from Hoadon e Where e.tinhtrang=1 ORDER BY e.ngaymua desc";
 		}else
 		{
-			jql="Select e from Hoadon e Where e.tinhtrang=1 AND e.user.userId= "+iduser;
+			jql="Select e from Hoadon e Where e.tinhtrang=1 AND e.user.userId= "+iduser +" ORDER BY e.ngaymua desc";
 		}
 		Query query = entityManager.createQuery(jql);
 		ArrayList<Hoadon> list=(ArrayList<Hoadon>) query.getResultList();
@@ -77,13 +77,19 @@ public class HoadonDAOImpl implements HoadonDAO{
 		String jql="";
 		if(iduser==-1)
 		{
-			jql="Select e from Hoadon e Where e.tinhtrang=2";
+			jql="Select e from Hoadon e Where e.tinhtrang=2 ORDER BY e.ngaymua desc";
 		}else
 		{
-			jql="Select e from Hoadon e Where e.tinhtrang=2 AND e.user.userId= "+iduser;
+			jql="Select e from Hoadon e Where e.tinhtrang=2 AND e.user.userId= "+iduser +" ORDER BY e.ngaymua desc";
 		}
 		Query query = entityManager.createQuery(jql);
 		ArrayList<Hoadon> list=(ArrayList<Hoadon>) query.getResultList();
 		return list;
+	}
+
+	@Override
+	public Hoadon getById(int idhd) {
+		Hoadon hd=entityManager.find(Hoadon.class, idhd);
+		return hd;
 	}
 }

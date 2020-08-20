@@ -11,4 +11,5 @@ public interface HoadonDAO {
 	public List<Hoadon> getCtConfirmed(Long iduser);
 	public List<Hoadon> getCtDeleted(Long iduser);
 	public void setState(int idhd,int state);	
+	public Hoadon getById(int idhd);
 }

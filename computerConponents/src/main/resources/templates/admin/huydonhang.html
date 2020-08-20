@@ -44,7 +44,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- CSS Files -->
   <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link th:href="@{/assets/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -118,7 +118,7 @@ The above copyright notice and this permission notice shall be included in all c
         <thead class="thead-dark">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Name</th>
+            <th scope="col">Khách hàng</th>
             <th scope="col">Ngày đặt</th>
             <th scope="col">Loại thanh toán</th>
             <th scope="col"></th>
@@ -128,8 +128,8 @@ The above copyright notice and this permission notice shall be included in all c
         <tbody>
         <th:block th:each="hd : ${dtos}">
           <tr>
-            <th><a href="#" th:text="${hd.idhd}"></a></th>
-            <td><a href="#" th:text="${hd.user.userName}"></a></td>
+            <th><a th:href="@{'/admin/infodonhang/'+${hd.idhd}+'/'+${hd.user.userName}}" th:text="${hd.idhd}"></a></th>
+            <td><a th:href="@{'/admin/infodonhang/'+${hd.idhd}+'/'+${hd.user.userName}}" th:text="${hd.user.userName}"></a></td>
             <td th:text=${hd.ngaymua}></td>
             <td th:text=${hd.loaithanhtoan.loaithanhtoan}></td>
           </tr>

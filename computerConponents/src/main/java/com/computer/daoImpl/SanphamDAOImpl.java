@@ -46,4 +46,23 @@ public class SanphamDAOImpl implements SanphamDAO{
 		return listSanpham;
 	}
 
+	@Override
+	public boolean truSoluong(Sanpham sp, int soluong) {
+		int soluonglucsau=sp.getSoluongsp()-soluong;
+		String jql="UPDATE Sanpham e SET e.soluongsp= "+soluonglucsau +" Where e.idsp= "+sp.getIdsp();
+		Query query=entityManager.createQuery(jql);
+		int rowUpdated=query.executeUpdate();
+		return true;
+	}
+
+	@Override
+	public boolean congSoluong(Sanpham sp, int soluong) {
+		int soluonglucsau=sp.getSoluongsp()+soluong;
+		String jql="UPDATE Sanpham e SET e.soluongsp= "+soluonglucsau +" Where e.idsp= "+sp.getIdsp();
+		System.out.print("TEST TEST  "+jql);
+		Query query=entityManager.createQuery(jql);
+		int rowUpdated=query.executeUpdate();
+		return true;
+	}
+
 }

@@ -10,4 +10,6 @@ public interface SanphamService {
 	public ArrayList<SanphamDTO> getListSanpham(int pageNumber,int pageSize);
 	public SanphamDTO getById(int id);
 	public ArrayList<SanphamDTO> getListSanphamtheoCate(int id,int pageNumber, int pageSize);
+	public boolean truSoluong(SanphamDTO spdto,int soluong);
+	public boolean congSoluong(SanphamDTO spdto,int soluong);
 }

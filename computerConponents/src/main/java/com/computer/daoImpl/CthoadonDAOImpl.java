@@ -54,7 +54,7 @@ public class CthoadonDAOImpl implements CthoadonDAO{
 	{
 		String jql="Select e from Cthoadon e Where e.sanpham.soluongsp >"+soluong+"AND e.sanpham.idsp="+idsp;
 		Query query = entityManager.createQuery(jql);
-		if(query.getResultList()!=null)
+		if(query.getResultList().size()!=0)
 		{
 			return true;
 		}
