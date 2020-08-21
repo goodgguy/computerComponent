@@ -20,26 +20,9 @@ The above copyright notice and this permission notice shall be included in all c
   <title>
     Máy tính cao cấp, máy tính đồ họa, tuanhoanganh.vn
   </title>
-  <!--BOOTSTRAP-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-  <!-- JS, Popper.js, and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
-  <!--BOOSTRAP-->
-
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link th:href="@{/assets/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
@@ -58,28 +41,28 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/duyetdonhang}">
+          <li class="nav-item  ">
+            <a class="nav-link" href="./dashboard.html">
               <i class="material-icons">dashboard</i>
-              <p>Duyệt Đơn hàng</p>
+              <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" th:href="@{/admin/donhangdaduyet}">
-              <i class="material-icons">content_paste</i>
-              <p>Đơn hàng đã duyệt</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" th:href="@{/admin/huydonhang}">
-              <i class="material-icons">library_books</i>
-              <p>Đơn hàng đã hủy</p>
-            </a>
-          </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="./user.html">
               <i class="material-icons">person</i>
               <p>Nhân Viên</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./tables.html">
+              <i class="material-icons">content_paste</i>
+              <p>Table List</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./typography.html">
+              <i class="material-icons">library_books</i>
+              <p>Typography</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -110,32 +93,32 @@ The above copyright notice and this permission notice shall be included in all c
         </ul>
       </div>
     </div>
-    <div class="main-panel ps-container ps-theme-default">
-      <!--MAIN-->
-      <table class="table m-2">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Khách hàng</th>
-            <th scope="col">Ngày đặt</th>
-            <th scope="col">Loại thanh toán</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="hd : ${dtos}">
-          <tr>
-            <th><a th:href="@{'/admin/infodonhang/'+${hd.idhd}+'/'+${hd.user.userName}}" th:text="${hd.idhd}"></a></th>
-            <td><a th:href="@{'/admin/infodonhang/'+${hd.idhd}+'/'+${hd.user.userName}}" th:text="${hd.user.userName}"></a></td>
-            <td th:text=${hd.ngaymua}></td>
-            <td th:text=${hd.loaithanhtoan.loaithanhtoan}></td>
-            <td><a th:href="@{'/admin/huyhddaxacnhan/'+${hd.idhd}}" type="button" class="btn btn-danger">Hủy</a></td>
-          </tr>
-          </th:block>
-        </tbody>
-      </table>
-      <!--END MAIN-->
+    <div class="main-panel">
+    <!--MAIN-->
+    <button class="btn btn-info ml-4">Thêm mới:</button>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Giá</th>
+          <th scope="col">Số Lượng</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><a href="">1778</a></th>
+          <td><a href="Intel Core-I9"></a></td>
+          <td>23.000.000</td>
+          <td>12</td>
+          <td><a href="#"><img src="https://i.ibb.co/Yhzrr74/edit.png"/></a></td>
+          <td><a href="#"><img src="https://i.ibb.co/4gBc02s/quit.png"/></a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!--END MAIN-->
     </div>
   </div>
 </body>
