@@ -142,8 +142,14 @@ public class AdminController {
 		 return "admin/danhsachsanpham";
 	 }
 	 @RequestMapping(value = "/addsanpham", method = RequestMethod.GET)
-	 public String addsanpham()
+	 public String addsanpham(ModelMap map)
 	 {
-		 
+		 //NEW SP, NEW CATEGROY, NEWHANGSANXUAT
+		 SanphamDTO sanphamDTO=new SanphamDTO();
+		 map.addAttribute("sanpham",sanphamDTO);
+
+		 //GET CATEGORY
+		 //GET HSX
+		 return "admin/themmoisanpham";
 	 }
 }
