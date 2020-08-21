@@ -111,7 +111,7 @@ The above copyright notice and this permission notice shall be included in all c
         <th:block th:each="sp : ${sanpham}">
         <tr>
           <th><a href="" th:text="${sp.idsp}"></a></th>
-          <td><a href="" th:text="${sp.tensp}"></a></td>
+          <td><a href="" th:text="${sp.tensp}" style="word-wrap: break-word;"></a></td>
           <td th:inline="text">[[${#numbers.formatDecimal(sp.giasp, 0, 'POINT', 0, 'COMMA')}]] VNĐ</td>
           <td th:text="${sp.soluongsp}"></td>
           <td><a th:href="@{'/admin/editsanpham/'+${sp.idsp}}"><img src="https://i.ibb.co/Yhzrr74/edit.png"/></a></td>

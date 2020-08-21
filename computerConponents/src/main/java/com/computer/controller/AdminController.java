@@ -133,12 +133,17 @@ public class AdminController {
 		 return "admin/infodonhang";
 	 }
 	 //QUAN LY SAN PHAM
-	 @RequestMapping(value = "/infodonhang/danhsachsanpham", method = RequestMethod.GET)
+	 @RequestMapping(value = "/danhsachsanpham", method = RequestMethod.GET)
 	 public String danhsachsanpham()
 	 {
 		 ArrayList<SanphamDTO>listSanpham=new ArrayList<SanphamDTO>();
 		 listSanpham=sanphamService.getListSanpham(1, 20);
 		 map.addAttribute("sanpham", listSanpham);
 		 return "admin/danhsachsanpham";
+	 }
+	 @RequestMapping(value = "/addsanpham", method = RequestMethod.GET)
+	 public String addsanpham()
+	 {
+		 
 	 }
 }
