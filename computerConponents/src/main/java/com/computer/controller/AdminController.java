@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,14 +17,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.computer.entity.Chitietkythuat;
+import com.computer.entity.Danhmucsanpham;
+import com.computer.entity.Hangsanxuat;
+import com.computer.entity.Hinhsanpham;
+import com.computer.entity.Sanpham;
 import com.computer.model.AppUserDTO;
+import com.computer.model.ChitietkythuatDTO;
 import com.computer.model.CthoadonDTO;
+import com.computer.model.DanhmucsanphamDTO;
+import com.computer.model.HangsanxuatDTO;
+import com.computer.model.HinhsanphamDTO;
 import com.computer.model.HoadonDTO;
 import com.computer.model.SanphamDTO;
 import com.computer.service.AppUserService;
+import com.computer.service.ChitietkythuatService;
 import com.computer.service.CthoadonService;
+import com.computer.service.DanhmucsanphamService;
 import com.computer.service.HoadonService;
 import com.computer.service.SanphamService;
+import com.computer.service.HangsanxuatService;
+import com.computer.service.HinhsanphamService;
 import com.computer.utils.Common;
 
 @Controller
@@ -40,6 +54,19 @@ public class AdminController {
 	
 	@Autowired
 	AppUserService appuserService;
+	
+	@Autowired
+	DanhmucsanphamService danhmucsanphamService;
+	
+	@Autowired
+	HangsanxuatService hangsanxuatService;
+	
+	@Autowired
+	ChitietkythuatService chitietkythuatService;
+	
+	@Autowired
+	HinhsanphamService hinhsanphamService;
+	
 	
 	@RequestMapping(value = "/duyetdonhang", method = RequestMethod.GET)
 	public String duyedonhang(ModelMap map) {
@@ -134,7 +161,7 @@ public class AdminController {
 	 }
 	 //QUAN LY SAN PHAM
 	 @RequestMapping(value = "/danhsachsanpham", method = RequestMethod.GET)
-	 public String danhsachsanpham()
+	 public String danhsachsanpham(ModelMap map)
 	 {
 		 ArrayList<SanphamDTO>listSanpham=new ArrayList<SanphamDTO>();
 		 listSanpham=sanphamService.getListSanpham(1, 20);
@@ -146,10 +173,80 @@ public class AdminController {
 	 {
 		 //NEW SP, NEW CATEGROY, NEWHANGSANXUAT
 		 SanphamDTO sanphamDTO=new SanphamDTO();
+		 Hangsanxuat hsx=new Hangsanxuat();
+		 Danhmucsanpham dmsp=new Danhmucsanpham();
+		 sanphamDTO.setIdhsx(hsx);
+		 sanphamDTO.setDanhmucsp(dmsp);
 		 map.addAttribute("sanpham",sanphamDTO);
-
 		 //GET CATEGORY
+		 List<DanhmucsanphamDTO> listdmsp=danhmucsanphamService.getAllDanhmucsanpham();
+		 map.addAttribute("danhmucsp", listdmsp);
 		 //GET HSX
+		 List<HangsanxuatDTO> listhsx=hangsanxuatService.getAll();
+		 map.addAttribute("hangsanxuat", listhsx);
 		 return "admin/themmoisanpham";
+	 }
+	 
+	 @RequestMapping(value = "/addsanpham", method = RequestMethod.POST)
+	 public RedirectView addsanpham(@ModelAttribute("sanpham")SanphamDTO sanphamDTO)
+	 {
+		 sanphamDTO.setSoluongsp(100);
+		 sanphamService.addSp(sanphamDTO);
+		 return new RedirectView("/admin/danhsachsanpham");
+	 }
+	 
+	 @RequestMapping(value = "/editsanpham/{id}", method = RequestMethod.GET)
+	 public String editsanpham(ModelMap map,@PathVariable("id")int idsp)
+	 {
+		//GET CATEGORY
+		 List<DanhmucsanphamDTO> listdmsp=danhmucsanphamService.getAllDanhmucsanpham();
+		 map.addAttribute("danhmucsp", listdmsp);
+		 //GET HSX
+		 List<HangsanxuatDTO> listhsx=hangsanxuatService.getAll();
+		 map.addAttribute("hangsanxuat", listhsx);
+		 //GET SP
+		 SanphamDTO sp=sanphamService.getById(idsp);
+		 map.addAttribute("sanpham",sp);
+		 //GET HINH ANH
+		 List<Chitietkythuat> ctkt=sp.getChitietkythuat();
+		 map.addAttribute("ctkt",ctkt);
+		 //GET CHI TIET
+		 List<Hinhsanpham> hinhsp=sp.getHinhsanpham();
+		 map.addAttribute("hinhsp",hinhsp);
+		 //GET ID
+		 map.addAttribute("idsp", idsp);
+		 return "admin/chitietsanpham";
+	 }
+	 @RequestMapping(value = "/addCtsp/{idsp}", method = RequestMethod.GET)
+	 public RedirectView addCtsp(@RequestParam(value = "chitiet",required = false,defaultValue="")String chitiet,
+			 @RequestParam(value = "mota",required = false,defaultValue="")String mota,
+			 @PathVariable("idsp")int idsp)
+	 {
+		 ChitietkythuatDTO ctkt=new ChitietkythuatDTO();
+		 ctkt.setTenkt(chitiet);
+		 ctkt.setChitietkt(mota);
+		 Sanpham sp=new Sanpham();
+		 sp.setIdsp(idsp);
+		 ctkt.setChitietkythuatsp(sp);
+		 chitietkythuatService.addCtkt(ctkt);
+		 return new RedirectView("/admin/editsanpham/"+idsp);
+	 }
+	 @RequestMapping(value = "/addhinh/{idsp}", method = RequestMethod.GET)
+	 public RedirectView addhinh(@RequestParam(value = "urlhinh",required = false,defaultValue="")String url,
+			 @PathVariable("idsp")int idsp)
+	 {
+		 HinhsanphamDTO hinh=new HinhsanphamDTO();
+		 hinh.setUrlHinhsp(url);
+		 Sanpham sp=new Sanpham();
+		 sp.setIdsp(idsp);
+		 hinh.setHinhsp(sp);
+		 hinhsanphamService.addHinh(hinh);
+		 return new RedirectView("/admin/editsanpham/"+idsp);
+	 }
+	 @RequestMapping(value = "/deletehsp/{idhsp}/{idsp}", method = RequestMethod.GET)
+	 public RedirectView deletehsp(@PathVariable("idhsp")int idhsp,@PathVariable("idsp")int idsp)
+	 {
+		 
+		 return new RedirectView("/admin/editsanpham/"+idsp);
 	 }
 }

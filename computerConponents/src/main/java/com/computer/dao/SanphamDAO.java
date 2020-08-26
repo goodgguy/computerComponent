@@ -11,4 +11,5 @@ public interface SanphamDAO {
 	public Sanpham getById(int id);
 	public boolean truSoluong(Sanpham sp,int soluong);
 	public boolean congSoluong(Sanpham sp,int soluong);
+	public boolean addSp(Sanpham sanpham);
 }

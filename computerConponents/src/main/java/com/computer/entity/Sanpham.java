@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name="SANPHAM")
 public class Sanpham {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="IDSP")
 	private int idsp;
 	

@@ -12,4 +12,5 @@ public interface SanphamService {
 	public ArrayList<SanphamDTO> getListSanphamtheoCate(int id,int pageNumber, int pageSize);
 	public boolean truSoluong(SanphamDTO spdto,int soluong);
 	public boolean congSoluong(SanphamDTO spdto,int soluong);
+	public boolean addSp(SanphamDTO spdto);
 }

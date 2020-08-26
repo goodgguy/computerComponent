@@ -147,4 +147,21 @@ public class SanphamServiceImpl implements SanphamService{
 		return true;
 	}
 
+	@Override
+	public boolean addSp(SanphamDTO spdto) {
+		Sanpham sp=new Sanpham();
+		sp.setIdsp(spdto.getIdsp());
+		sp.setTensp(spdto.getTensp());
+		sp.setMotasp(spdto.getMotasp());
+		sp.setSoluongsp(spdto.getSoluongsp());
+		sp.setAnhchinh(spdto.getAnhchinh());
+		sp.setIdhsx(spdto.getIdhsx());
+		sp.setDanhmucsp(spdto.getDanhmucsp());
+		sp.setChitietkythuat(spdto.getChitietkythuat());
+		sp.setHinhsanpham(spdto.getHinhsanpham());
+		sp.setGiasp(spdto.getGiasp());
+		sanphamDAO.addSp(sp);
+		return true;
+	}
+
 }

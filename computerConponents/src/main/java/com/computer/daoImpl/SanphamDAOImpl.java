@@ -65,4 +65,10 @@ public class SanphamDAOImpl implements SanphamDAO{
 		return true;
 	}
 
+	@Override
+	public boolean addSp(Sanpham sanpham) {
+		entityManager.persist(sanpham);
+		return true;
+	}
+
 }

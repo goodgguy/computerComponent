@@ -1,14 +1,3 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
-
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +14,8 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
+  <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
   <link th:href="@{/assets/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
 </head>
 
@@ -33,7 +24,6 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
@@ -89,6 +79,12 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Thống Kê</p>
             </a>
           </li>
+          
+          <li class="nav-item">
+            <a class="nav-link">
+              <p style="color:red;" th:text="${param.message}"></p>
+            </a>
+          </li>
 
         </ul>
       </div>
@@ -96,7 +92,7 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="main-panel">
     <!--MAIN-->
     <div class="container mt-5">
-        <form th:action="@{/admin/addsanpham}" th:object="${sanpham}" method="post">
+        <form th:action="@{/admin/editsp}" th:object="${sanpham}" method="post">
             <div class="form-group">
               <label for="exampleInputEmail1">Tên sản phẩm</label>
               <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" th:field="*{tensp}">
@@ -128,6 +124,74 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
+          <!--CHI TIET KI THUAT-->
+          <div class="row">
+            <div class="col-12">
+                <form th:action="@{'/admin/addCtsp/'+${idsp}}" method="get">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Chi tiết</label>
+                      <input th:name="chitiet" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                      <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Mô tả</label>
+                      <input th:name="mota" type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Chi tiết</th>
+                        <th scope="col">Mô tả</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="ct : ${ctkt}">
+                      <tr>
+                        <td th:text="${ct.tenkt}"></td>
+                        <th th:text="${ct.chitietkt}"></th>
+                      </tr>
+                      </th:block>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+          <!--LIST IMAGE-->
+          <div class="row">
+            <div class="col-12">
+                <form th:action="@{'/admin/addhinh/'+${idsp}}" method="get">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Url: </label>
+                      <input th:name="urlhinh" type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                      <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!--LIST IMAGE-->
+        <div class="container-image mt-2"></div>
+        <ul class="list-group">
+        <th:block th:each="hinh : ${hinhsp}">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-3">
+                            <img class="card-img-top" th:src="${hinh.urlHinhsp}" alt="Card image cap">
+                            <div class="card-body">
+                            <a th:href="@{'/admin/addhinh/'+${idsp}}" type="button" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            </th:block>
+        </ul>
     </div>
     <!--END MAIN-->
     </div>
