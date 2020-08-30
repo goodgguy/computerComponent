@@ -12,4 +12,5 @@ public interface SanphamDAO {
 	public boolean truSoluong(Sanpham sp,int soluong);
 	public boolean congSoluong(Sanpham sp,int soluong);
 	public boolean addSp(Sanpham sanpham);
+	public boolean deleteSp(Sanpham sanpham);
 }

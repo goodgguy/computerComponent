@@ -20,4 +20,10 @@ public class HìnhsanphamDAOImpl implements HinhsanphamDAO{
 		return false;
 	}
 
+	@Override
+	public boolean deleteHinh(Hinhsanpham hinhsp) {
+		entityManager.remove(entityManager.contains(hinhsp) ? hinhsp : entityManager.merge(hinhsp));
+		return false;
+	}
+
 }

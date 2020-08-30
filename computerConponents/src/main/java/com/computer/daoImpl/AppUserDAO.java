@@ -1,5 +1,7 @@
 package com.computer.daoImpl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -34,10 +36,36 @@ public class AppUserDAO {
     	AppUser appuser=(AppUser) query.getSingleResult();
     	return appuser;
     }
+    public AppUser getUser(Long id)
+    {
+    	Query query = entityManager.createQuery("Select e from AppUser e Where e.userId= :id",AppUser.class);
+    	query.setParameter("id",id);
+    	AppUser appuser=(AppUser) query.getSingleResult();
+    	return appuser;
+    }
     
     public boolean addUser(AppUser user)
     {
     	entityManager.persist(user);
+    	return true;
+    }
+    public List<AppUser> getlistUser()
+    {
+    	String jql="SELECT e FROM AppUser e";
+    	return entityManager.createQuery(jql,AppUser.class).getResultList();
+    }
+    public boolean deactiveUser(Long idUser)
+    {
+    	String jql="UPDATE AppUser e SET e.enabled= false WHERE e.userId="+idUser;
+    	Query query = entityManager.createQuery(jql);
+		query.executeUpdate();
+    	return true;
+    }
+    public boolean activeUser(Long idUser)
+    {
+    	String jql="UPDATE AppUser e SET e.enabled= true WHERE e.userId="+idUser;
+    	Query query = entityManager.createQuery(jql);
+		query.executeUpdate();
     	return true;
     }
 }

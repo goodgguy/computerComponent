@@ -23,4 +23,10 @@ public class DanhmucsanphamDAOImpl implements DanhmucsanphamDAO{
 		return entityManager.createQuery(jql,Danhmucsanpham.class).getResultList();
 	}
 
+	@Override
+	public boolean addDanhmuc(Danhmucsanpham dmsp) {
+		entityManager.persist(dmsp);
+		return false;
+	}
+
 }

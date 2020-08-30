@@ -164,4 +164,12 @@ public class SanphamServiceImpl implements SanphamService{
 		return true;
 	}
 
+	@Override
+	public boolean deleteSp(int idsp) {
+		Sanpham sp=new Sanpham();
+		sp.setIdsp(idsp);
+		sanphamDAO.deleteSp(sp);
+		return false;
+	}
+
 }

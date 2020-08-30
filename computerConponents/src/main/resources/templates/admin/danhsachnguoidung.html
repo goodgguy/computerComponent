@@ -95,27 +95,24 @@ The above copyright notice and this permission notice shall be included in all c
     </div>
     <div class="main-panel">
     <!--MAIN-->
-    <a th:href="@{/admin/addsanpham}" class="btn btn-info ml-4">Thêm mới:</a>
+     
     <table class="table">
       <thead class="thead-light">
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Tên</th>
-          <th scope="col">Giá</th>
-          <th scope="col">Số Lượng</th>
-          <th></th>
+          <th scope="col">Username</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <th:block th:each="sp : ${sanpham}">
+        <th:block th:each="user : ${listUser}">
         <tr>
-          <th><a th:href="@{'/admin/editsanpham/'+${sp.idsp}}" th:text="${sp.idsp}"></a></th>
-          <td><a th:href="@{'/admin/editsanpham/'+${sp.idsp}}" th:text="${sp.tensp}" style="word-wrap: break-word;"></a></td>
-          <td th:inline="text">[[${#numbers.formatDecimal(sp.giasp, 0, 'POINT', 0, 'COMMA')}]] VNĐ</td>
-          <td th:text="${sp.soluongsp}"></td>
-          <td><a th:href="@{'/admin/editsanpham/'+${sp.idsp}}"><img src="https://i.ibb.co/Yhzrr74/edit.png"/></a></td>
-          <td><a th:href="@{'/admin/deletesanpham/'+${sp.idsp}}"><img src="https://i.ibb.co/4gBc02s/quit.png"/></a></td>
+          <th><a th:href="@{'/admin/infoUser/'+${user.userId}}" th:text="${user.userId}"></a></th>
+          <td><a th:href="@{'/admin/infoUser/'+${user.userId}}" th:text="${user.userName}" style="word-wrap: break-word;"></a></td>
+          <td>
+          <a th:if="${user.enabled==true}" th:href="@{'/admin/deactiveUser/'+${user.userId}}"><img src="https://i.ibb.co/s3v7t33/ok.png"/></a>
+          <a th:if="${user.enabled==false}" th:href="@{'/admin/activeUser/'+${user.userId}}"><img src="https://i.ibb.co/4gBc02s/quit.png"/></a>
+          </td>
         </tr>
       </th:block>
       </tbody>

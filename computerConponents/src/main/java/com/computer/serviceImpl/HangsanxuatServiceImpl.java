@@ -30,5 +30,12 @@ public class HangsanxuatServiceImpl implements HangsanxuatService{
 		}
 		return dtos;
 	}
+	@Override
+	public boolean addHangsanxuat(String tenhsx) {
+		Hangsanxuat hsx=new Hangsanxuat();
+		hsx.setTenhsx(tenhsx);
+		hangsanxuatDAO.addHangsanxuat(hsx);
+		return false;
+	}
 	
 }

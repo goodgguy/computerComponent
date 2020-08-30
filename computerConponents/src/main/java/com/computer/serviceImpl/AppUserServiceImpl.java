@@ -1,5 +1,8 @@
 package com.computer.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +44,49 @@ public class AppUserServiceImpl implements AppUserService{
 		appuserDAO.addUser(user);
 		return true;
 	}
+	@Override
+	public List<AppUserDTO> getListUser() {
+		List<AppUser> listappuser=appuserDAO.getlistUser();
+		List<AppUserDTO> dtos=new ArrayList<AppUserDTO>();
+		for(AppUser user:listappuser)
+		{
+			AppUserDTO dto=new AppUserDTO();
+			dto.setUserId(user.getUserId());
+			dto.setUserName(user.getUserName());
+			dto.setEncrytedPassword(user.getEncrytedPassword());
+			dto.setEnabled(user.isEnabled());
+			dto.setSdt_user(user.getSdt_user());
+			dto.setCmnd_user(user.getCmnd_user());
+			dto.setDiachi(user.getDiachi());
+			dto.setHoadon(user.getHoadon());
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+	@Override
+	public boolean deactiveUser(Long idUser) {
+		appuserDAO.deactiveUser(idUser);
+		return false;
+	}
+	@Override
+	public boolean activeUser(Long idUser) {
+		appuserDAO.activeUser(idUser);
+		return false;
+	}
+	@Override
+	public AppUserDTO getUser(Long id) {
+		AppUser user=appuserDAO.getUser(id);
+		AppUserDTO dto=new AppUserDTO();
+		dto.setUserId(user.getUserId());
+		dto.setUserName(user.getUserName());
+		dto.setEncrytedPassword(user.getEncrytedPassword());
+		dto.setEnabled(user.isEnabled());
+		dto.setSdt_user(user.getSdt_user());
+		dto.setCmnd_user(user.getCmnd_user());
+		dto.setDiachi(user.getDiachi());
+		dto.setHoadon(user.getHoadon());
+		return dto;
+	}
+	
 
 }

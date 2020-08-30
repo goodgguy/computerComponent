@@ -24,4 +24,10 @@ public class HangsanxuatDAOImpl implements HangsanxuatDAO{
 		return entityManager.createQuery(jql,Hangsanxuat.class).getResultList();
 	}
 
+	@Override
+	public boolean addHangsanxuat(Hangsanxuat hsx) {
+		entityManager.persist(hsx);
+		return false;
+	}
+
 }

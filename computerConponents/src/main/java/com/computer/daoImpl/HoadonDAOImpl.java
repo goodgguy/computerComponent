@@ -92,4 +92,12 @@ public class HoadonDAOImpl implements HoadonDAO{
 		Hoadon hd=entityManager.find(Hoadon.class, idhd);
 		return hd;
 	}
+
+	@Override
+	public List<Hoadon> getHDUser(Long idUser) {
+		String jql="Select e from Hoadon e Where e.user.userId= "+idUser +" ORDER BY e.ngaymua desc";
+		Query query = entityManager.createQuery(jql);
+		ArrayList<Hoadon> list=(ArrayList<Hoadon>) query.getResultList();
+		return list;
+	}
 }

@@ -25,4 +25,12 @@ public class ChitietkythuatServiceImpl implements ChitietkythuatService{
 		return true;
 	}
 
+	@Override
+	public boolean deleteCtkt(Long idctkt) {
+		Chitietkythuat ctkt=new Chitietkythuat();
+		ctkt.setIdchitietkt(idctkt);
+		chitietkythuatDAO.deleteCtkt(ctkt);
+		return false;
+	}
+
 }

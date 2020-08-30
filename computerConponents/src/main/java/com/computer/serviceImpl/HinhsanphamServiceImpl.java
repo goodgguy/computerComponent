@@ -23,4 +23,12 @@ public class HinhsanphamServiceImpl implements HinhsanphamService{
 		return false;
 	}
 
+	@Override
+	public boolean deleteHinh(int idh) {
+		Hinhsanpham hinh=new Hinhsanpham();
+		hinh.setIdhinhsp(idh);
+		hinhsanphamDAO.deleteHinh(hinh);
+		return false;
+	}
+
 }

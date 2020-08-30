@@ -7,4 +7,5 @@ import com.computer.model.HangsanxuatDTO;
 
 public interface HangsanxuatService {
 	public List<HangsanxuatDTO> getAll();
+	public boolean addHangsanxuat(String tenhsx);
 }

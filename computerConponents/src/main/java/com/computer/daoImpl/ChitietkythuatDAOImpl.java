@@ -22,4 +22,10 @@ public class ChitietkythuatDAOImpl implements ChitietkythuatDAO{
 		return true;
 	}
 
+	@Override
+	public boolean deleteCtkt(Chitietkythuat ctkt) {
+		entityManager.remove(entityManager.contains(ctkt) ? ctkt : entityManager.merge(ctkt));
+		return false;
+	}
+
 }

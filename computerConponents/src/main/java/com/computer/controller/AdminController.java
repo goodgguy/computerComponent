@@ -67,7 +67,7 @@ public class AdminController {
 	@Autowired
 	HinhsanphamService hinhsanphamService;
 	
-	
+	//DUYET DON HANG
 	@RequestMapping(value = "/duyetdonhang", method = RequestMethod.GET)
 	public String duyedonhang(ModelMap map) {
 		//GET HOADON
@@ -76,6 +76,7 @@ public class AdminController {
 		return "admin/duyetdonhang";
 	}
 	
+	//DON HANG DA DUYET
 	@RequestMapping(value = "/donhangdaduyet", method = RequestMethod.GET)
 	public String donhangdaduyet(ModelMap map) {
 		List<HoadonDTO> dtos=hoadonService.getCtConfirmed(Long.parseLong("-1"));
@@ -83,6 +84,7 @@ public class AdminController {
 		return "admin/donhangdaduyet";
 	}
 	
+	//HUY DON HANG
 	@RequestMapping(value = "/huydonhang", method = RequestMethod.GET)
 	public String huydonhang(ModelMap map) {
 		List<HoadonDTO> dtos=hoadonService.getCtDeleted(Long.parseLong("-1"));
@@ -90,6 +92,7 @@ public class AdminController {
 		return "admin/huydonhang";
 	}
 	
+	//XU LY DON HANG
 	 @RequestMapping(value = "/xacnhanhd/{id}", method = RequestMethod.GET)
 	 public RedirectView xacnhanhd(ModelMap map,@PathVariable("id")int idhd, 
 			 HttpSession session,
@@ -159,6 +162,8 @@ public class AdminController {
 		 map.addAttribute("user", appuser);
 		 return "admin/infodonhang";
 	 }
+	 
+	 
 	 //QUAN LY SAN PHAM
 	 @RequestMapping(value = "/danhsachsanpham", method = RequestMethod.GET)
 	 public String danhsachsanpham(ModelMap map)
@@ -207,10 +212,10 @@ public class AdminController {
 		 //GET SP
 		 SanphamDTO sp=sanphamService.getById(idsp);
 		 map.addAttribute("sanpham",sp);
-		 //GET HINH ANH
+		 //GET CHI TIET
 		 List<Chitietkythuat> ctkt=sp.getChitietkythuat();
 		 map.addAttribute("ctkt",ctkt);
-		 //GET CHI TIET
+		 //GET HINH ANH
 		 List<Hinhsanpham> hinhsp=sp.getHinhsanpham();
 		 map.addAttribute("hinhsp",hinhsp);
 		 //GET ID
@@ -246,7 +251,85 @@ public class AdminController {
 	 @RequestMapping(value = "/deletehsp/{idhsp}/{idsp}", method = RequestMethod.GET)
 	 public RedirectView deletehsp(@PathVariable("idhsp")int idhsp,@PathVariable("idsp")int idsp)
 	 {
-		 
+		 hinhsanphamService.deleteHinh(idhsp);
 		 return new RedirectView("/admin/editsanpham/"+idsp);
+	 }
+	 @RequestMapping(value = "/deletectsp/{idctsp}/{idsp}", method = RequestMethod.GET)
+	 public RedirectView deletectsp(@PathVariable("idctsp")Long idctsp,@PathVariable("idsp")int idsp)
+	 {
+		 chitietkythuatService.deleteCtkt(idctsp);
+		 return new RedirectView("/admin/editsanpham/"+idsp);
+	 }
+	 @RequestMapping(value = "/deletesanpham/{idsp}", method = RequestMethod.GET)
+	 public RedirectView deletesp(@PathVariable("idsp")int idsp)
+	 {
+		 sanphamService.deleteSp(idsp);
+		 return new RedirectView("/admin/danhsachsanpham");
+	 }
+	 //DANH MUC SAN PHAM
+	 @RequestMapping(value = "/danhmucsanpham", method = RequestMethod.GET)
+	 public String danhmucsp(ModelMap map)
+	 {
+		 List<DanhmucsanphamDTO> dmsp=danhmucsanphamService.getAllDanhmucsanpham();
+		 map.addAttribute("danhmucsp", dmsp);
+		 return "admin/danhmucsanpham";
+	 }
+	 @RequestMapping("/adddanhmuc")
+	 public RedirectView adddanhmuc(@RequestParam(value = "tendm", required = false) String tendm)
+	 {
+		 if(tendm.isEmpty())
+		 {
+			 return new RedirectView("/admin/danhmucsanpham/");
+		 }
+		 danhmucsanphamService.addDanhmuc(tendm);
+		 return new RedirectView("/admin/danhmucsanpham/");
+	 }
+	 //HANG SAN XUAT
+	 @RequestMapping(value = "/hangsanxuat", method = RequestMethod.GET)
+	 public String hangsanxuat(ModelMap map)
+	 {
+		 List<HangsanxuatDTO>hsx=hangsanxuatService.getAll();
+		 map.addAttribute("hangsx", hsx);
+		 return "admin/hangsanxuat";
+	 }
+	 @RequestMapping("/addhangsanxuat")
+	 public RedirectView addhangsanxuat(@RequestParam(value = "tenhsx", required = false) String tenhsx)
+	 {
+		 if(tenhsx.isEmpty())
+		 {
+			 return new RedirectView("/admin/hangsanxuat/");
+		 }
+		 hangsanxuatService.addHangsanxuat(tenhsx);
+		 return new RedirectView("/admin/hangsanxuat/");
+	 }
+	 
+	 //NGUOI DUNG
+	 @RequestMapping(value = "/danhsachnguoidung", method = RequestMethod.GET)
+	 public String danhsachnguoidung(ModelMap map)
+	 {
+		 List<AppUserDTO> listUser=appuserService.getListUser();
+		 map.addAttribute("listUser", listUser);
+		 return "admin/danhsachnguoidung";
+	 }
+	 @RequestMapping("/deactiveUser/{idUser}")
+	 public RedirectView deactiveUser(@PathVariable("idUser")Long idUser)
+	 {
+		 appuserService.deactiveUser(idUser);
+		 return new RedirectView("/admin/danhsachnguoidung");
+	 }
+	 @RequestMapping("/activeUser/{idUser}")
+	 public RedirectView activeUser(@PathVariable("idUser")Long idUser)
+	 {
+		 appuserService.activeUser(idUser);
+		 return new RedirectView("/admin/danhsachnguoidung");
+	 }
+	 @RequestMapping("/infoUser/{idUser}")
+	 public String infoUser(ModelMap map,@PathVariable("idUser")Long idUser)
+	 {
+		 AppUserDTO user=appuserService.getUser(idUser);
+		 List<HoadonDTO>hoadon=hoadonService.getHDUser(user.getUserId());
+		 map.addAttribute("user", user);
+		 map.addAttribute("listhd", hoadon);
+		 return "admin/infoUser";
 	 }
 }

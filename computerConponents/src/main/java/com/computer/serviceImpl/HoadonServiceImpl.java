@@ -107,4 +107,21 @@ public class HoadonServiceImpl implements HoadonService{
 		return dto;
 	}
 
+	@Override
+	public List<HoadonDTO> getHDUser(Long iduser) {
+		List<Hoadon> listhoadon=hoadonDAO.getHDUser(iduser);
+		List<HoadonDTO> dtos=new ArrayList<HoadonDTO>();
+		for(Hoadon hd:listhoadon)
+		{
+			HoadonDTO dto=new HoadonDTO();
+			dto.setIdhd(hd.getIdhd());
+			dto.setTinhtrang(hd.getTinhtrang());
+			dto.setNgaymua(hd.getNgaymua());
+			dto.setLoaithanhtoan(hd.getLoaithanhtoan());
+			dto.setUser(hd.getUser());
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+
 }

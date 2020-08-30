@@ -95,27 +95,30 @@ The above copyright notice and this permission notice shall be included in all c
     </div>
     <div class="main-panel">
     <!--MAIN-->
-    <a th:href="@{/admin/addsanpham}" class="btn btn-info ml-4">Thêm mới:</a>
+    <form th:action="@{/admin/adddanhmuc}">
+    <div class="form-group">
+     <label for="exampleInputEmail1">Tên Danh Mục</label>
+     <input type="text" class="form-control" id="exampleInputEmail1" th:name="tendm">
+     <small id="emailHelp" class="form-text text-muted"></small>
+     </div>
+     <button type="submit" class="btn btn-primary">Submit</button>
+     </form>
+     
+     
     <table class="table">
       <thead class="thead-light">
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Tên</th>
-          <th scope="col">Giá</th>
-          <th scope="col">Số Lượng</th>
-          <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <th:block th:each="sp : ${sanpham}">
+        <th:block th:each="dmsp : ${danhmucsp}">
         <tr>
-          <th><a th:href="@{'/admin/editsanpham/'+${sp.idsp}}" th:text="${sp.idsp}"></a></th>
-          <td><a th:href="@{'/admin/editsanpham/'+${sp.idsp}}" th:text="${sp.tensp}" style="word-wrap: break-word;"></a></td>
-          <td th:inline="text">[[${#numbers.formatDecimal(sp.giasp, 0, 'POINT', 0, 'COMMA')}]] VNĐ</td>
-          <td th:text="${sp.soluongsp}"></td>
-          <td><a th:href="@{'/admin/editsanpham/'+${sp.idsp}}"><img src="https://i.ibb.co/Yhzrr74/edit.png"/></a></td>
-          <td><a th:href="@{'/admin/deletesanpham/'+${sp.idsp}}"><img src="https://i.ibb.co/4gBc02s/quit.png"/></a></td>
+          <th><a th:text="${dmsp.iddanhmucsp}"></a></th>
+          <td><a th:text="${dmsp.tendanhmucsp}" style="word-wrap: break-word;"></a></td>
+          <td><a th:href="@{'/admin/deletedanhmucsp'+${dmsp.iddanhmucsp}}"><img src="https://i.ibb.co/4gBc02s/quit.png"/></a></td>
         </tr>
       </th:block>
       </tbody>

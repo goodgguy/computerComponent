@@ -32,4 +32,12 @@ public class DanhmucsanphamServiceImpl implements DanhmucsanphamService{
 		return dtos;
 	}
 
+	@Override
+	public boolean addDanhmuc(String tendm) {
+		Danhmucsanpham dmsp=new Danhmucsanpham();
+		dmsp.setTendanhmucsp(tendm);
+		danhmucsanphamDAO.addDanhmuc(dmsp);
+		return false;
+	}
+
 }

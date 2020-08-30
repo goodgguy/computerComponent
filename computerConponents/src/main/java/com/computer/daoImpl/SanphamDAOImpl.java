@@ -71,4 +71,10 @@ public class SanphamDAOImpl implements SanphamDAO{
 		return true;
 	}
 
+	@Override
+	public boolean deleteSp(Sanpham sanpham) {
+		entityManager.remove(entityManager.contains(sanpham) ? sanpham : entityManager.merge(sanpham));
+		return false;
+	}
+
 }

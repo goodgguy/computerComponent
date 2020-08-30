@@ -13,4 +13,5 @@ public interface SanphamService {
 	public boolean truSoluong(SanphamDTO spdto,int soluong);
 	public boolean congSoluong(SanphamDTO spdto,int soluong);
 	public boolean addSp(SanphamDTO spdto);
+	public boolean deleteSp(int idsp);
 }
