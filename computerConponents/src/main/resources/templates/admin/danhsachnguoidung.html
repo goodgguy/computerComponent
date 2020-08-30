@@ -101,7 +101,8 @@ The above copyright notice and this permission notice shall be included in all c
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Username</th>
-          <th></th>
+          <th>Admin</th>
+          <th>Active</th>
         </tr>
       </thead>
       <tbody>
@@ -109,6 +110,10 @@ The above copyright notice and this permission notice shall be included in all c
         <tr>
           <th><a th:href="@{'/admin/infoUser/'+${user.userId}}" th:text="${user.userId}"></a></th>
           <td><a th:href="@{'/admin/infoUser/'+${user.userId}}" th:text="${user.userName}" style="word-wrap: break-word;"></a></td>
+          <td>
+          <a th:if="${user.checkRole==2}"><img src="https://i.ibb.co/s3v7t33/ok.png"/></a>
+          <a th:if="${user.checkRole!=2}" th:href="@{'/admin/addAdmin/'+${user.userId}}"><img src="https://i.ibb.co/Csp65Sg/add.png"/></a>
+          </td>
           <td>
           <a th:if="${user.enabled==true}" th:href="@{'/admin/deactiveUser/'+${user.userId}}"><img src="https://i.ibb.co/s3v7t33/ok.png"/></a>
           <a th:if="${user.enabled==false}" th:href="@{'/admin/activeUser/'+${user.userId}}"><img src="https://i.ibb.co/4gBc02s/quit.png"/></a>

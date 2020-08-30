@@ -36,6 +36,7 @@ import com.computer.service.CthoadonService;
 import com.computer.service.DanhmucsanphamService;
 import com.computer.service.HoadonService;
 import com.computer.service.SanphamService;
+import com.computer.service.UserRoleService;
 import com.computer.service.HangsanxuatService;
 import com.computer.service.HinhsanphamService;
 import com.computer.utils.Common;
@@ -66,6 +67,9 @@ public class AdminController {
 	
 	@Autowired
 	HinhsanphamService hinhsanphamService;
+	
+	@Autowired
+	UserRoleService userroleService;
 	
 	//DUYET DON HANG
 	@RequestMapping(value = "/duyetdonhang", method = RequestMethod.GET)
@@ -331,5 +335,11 @@ public class AdminController {
 		 map.addAttribute("user", user);
 		 map.addAttribute("listhd", hoadon);
 		 return "admin/infoUser";
+	 }
+	 @RequestMapping("/addAdmin/{idUser}")
+	 public RedirectView addAdmin(@PathVariable("idUser")Long idUser)
+	 {
+		 userroleService.addRole(idUser, Common.ROLE_ADMIN);
+		 return new RedirectView("/admin/danhsachnguoidung");
 	 }
 }

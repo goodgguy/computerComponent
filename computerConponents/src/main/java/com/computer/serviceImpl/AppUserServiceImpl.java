@@ -1,6 +1,7 @@
 package com.computer.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.computer.daoImpl.AppUserDAO;
 import com.computer.entity.AppUser;
+import com.computer.entity.UserRole;
 import com.computer.model.AppUserDTO;
 import com.computer.service.AppUserService;
 
@@ -59,6 +61,11 @@ public class AppUserServiceImpl implements AppUserService{
 			dto.setCmnd_user(user.getCmnd_user());
 			dto.setDiachi(user.getDiachi());
 			dto.setHoadon(user.getHoadon());
+			Collection<UserRole> user_role=user.getUser_role();
+			if(user_role.size()>=2)
+			{
+				dto.setCheckRole(2);
+			}
 			dtos.add(dto);
 		}
 		return dtos;

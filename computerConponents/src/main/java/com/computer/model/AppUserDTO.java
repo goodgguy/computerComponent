@@ -13,6 +13,14 @@ public class AppUserDTO {
 	 private String cmnd_user;
 	 private String diachi;
 	 private Collection<Hoadon> hoadon;
+	 private int checkRole;
+	 
+	public int getCheckRole() {
+		return checkRole;
+	}
+	public void setCheckRole(int checkRole) {
+		this.checkRole = checkRole;
+	}
 	public Long getUserId() {
 		return userId;
 	}

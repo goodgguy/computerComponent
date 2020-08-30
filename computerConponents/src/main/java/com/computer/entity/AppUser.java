@@ -44,7 +44,19 @@ public class AppUser {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
     private Collection<Hoadon> hoadon;
     
-    public String getDiachi() {
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL) 
+    private Collection<UserRole> user_role;
+    
+    
+    public Collection<UserRole> getUser_role() {
+		return user_role;
+	}
+
+	public void setUser_role(Collection<UserRole> user_role) {
+		this.user_role = user_role;
+	}
+
+	public String getDiachi() {
 		return diachi;
 	}
 
