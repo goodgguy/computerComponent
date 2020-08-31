@@ -89,4 +89,10 @@ public class SanphamDAOImpl implements SanphamDAO{
     	return listidSp;
 	}
 
+	@Override
+	public boolean updateSP(Sanpham sp) {
+		entityManager.merge(sp);
+		return false;
+	}
+
 }

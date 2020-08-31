@@ -226,6 +226,12 @@ public class AdminController {
 		 map.addAttribute("idsp", idsp);
 		 return "admin/chitietsanpham";
 	 }
+	 @RequestMapping(value = "/editsanpham/{idsp}", method = RequestMethod.POST)
+	 public RedirectView editsanpham(@ModelAttribute("sanpham")SanphamDTO sanpham,@PathVariable("idsp")int idsp)
+	 {
+		 sanphamService.updateSP(sanpham);
+		 return new RedirectView("/admin/editsanpham/"+idsp);
+	 }
 	 @RequestMapping(value = "/addCtsp/{idsp}", method = RequestMethod.GET)
 	 public RedirectView addCtsp(@RequestParam(value = "chitiet",required = false,defaultValue="")String chitiet,
 			 @RequestParam(value = "mota",required = false,defaultValue="")String mota,

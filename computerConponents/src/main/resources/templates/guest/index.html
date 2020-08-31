@@ -388,9 +388,9 @@
                         </div>
                         <!--GRID SAN PHAM START-->
                         <div class="noidung">
-                            <div class="cangiua">
+                            <div class="cangiua grid-container">
                              <th:block th:each="sp : ${sanpham}">
-                                <div class="anh wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
+                                <div class="grid-item wow animate__animated animate__fadeInUp" data-wow-delay=0.2s>
                                     <a th:href="@{'/product/'+${sp.idsp}}"><img
                                             th:src="${sp.anhchinh}"
                                             alt="">
