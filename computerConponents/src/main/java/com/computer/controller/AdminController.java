@@ -342,4 +342,11 @@ public class AdminController {
 		 userroleService.addRole(idUser, Common.ROLE_ADMIN);
 		 return new RedirectView("/admin/danhsachnguoidung");
 	 }
+	 //THONG KE
+	 @RequestMapping("/thongke")
+	 public String infoUser(ModelMap map)
+	 {
+		 
+		 return "admin/thongke";
+	 }
 }
