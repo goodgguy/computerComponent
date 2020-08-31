@@ -59,8 +59,8 @@ The above copyright notice and this permission notice shall be included in all c
                     TUAN HOANG
                 </a></div>
             <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li class="nav-item">
+        <ul class="nav">
+          <li class="nav-item">
             <a class="nav-link" th:href="@{/admin/duyetdonhang}">
               <i class="material-icons">dashboard</i>
               <p>Duyệt Đơn hàng</p>
@@ -79,9 +79,9 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link" th:href="@{/admin/danhsachnguoidung}">
               <i class="material-icons">person</i>
-              <p>Nhân Viên</p>
+              <p>Người dùng</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -91,26 +91,32 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
+            <a class="nav-link" th:href="@{/admin/danhmucsanpham}">
               <i class="material-icons">location_ons</i>
               <p>Danh Mục</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
+            <a class="nav-link" th:href="@{/admin/hangsanxuat}">
               <i class="material-icons">notifications</i>
               <p>Hãng Sản Xuất</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./rtl.html">
+            <a class="nav-link" th:href="@{/admin/thongke}">
               <i class="material-icons">language</i>
               <p>Thống Kê</p>
             </a>
           </li>
-
-                </ul>
-            </div>
+          
+          <li class="nav-item">
+            <a class="nav-link">
+              <p style="color:red;" th:text="${param.message}"></p>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
         </div>
         <div class="main-panel ps-container ps-theme-default">
             <!--KHACH HANG-->

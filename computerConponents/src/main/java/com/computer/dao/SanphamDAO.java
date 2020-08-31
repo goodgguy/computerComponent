@@ -13,4 +13,5 @@ public interface SanphamDAO {
 	public boolean congSoluong(Sanpham sp,int soluong);
 	public boolean addSp(Sanpham sanpham);
 	public boolean deleteSp(Sanpham sanpham);
+	public List<Integer>listTopidsp();
 }

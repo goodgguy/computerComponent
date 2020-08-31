@@ -172,4 +172,44 @@ public class SanphamServiceImpl implements SanphamService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<SanphamDTO> getListTopSp() {
+		List<Integer>listIdSp=sanphamDAO.listTopidsp();
+		List<Sanpham>listsp=new ArrayList<Sanpham>();
+		for(Integer idsp:listIdSp)
+		{
+			Sanpham sp=new Sanpham();
+			sp=sanphamDAO.getById(idsp);
+			listsp.add(sp);
+		}
+		ArrayList<SanphamDTO> dtos=new ArrayList<SanphamDTO>();
+		for(Sanpham sp:listsp)
+		{
+			SanphamDTO dto=new SanphamDTO();
+			dto.setIdsp(sp.getIdsp());
+			dto.setTensp(sp.getTensp());
+			dto.setMotasp(sp.getMotasp());
+			dto.setSoluongsp(sp.getSoluongsp());
+			dto.setAnhchinh(sp.getAnhchinh());
+			dto.setIdhsx(sp.getIdhsx());
+			dto.setDanhmucsp(sp.getDanhmucsp());
+			dto.setChitietkythuat(sp.getChitietkythuat());
+			dto.setHinhsanpham(sp.getHinhsanpham());
+			//Xu Lý DISCOUNT
+			int discount=ctkhuyenmaiService.getDiscountProduct(sp.getIdsp());
+			if(discount==0)
+			{
+				dto.setGiagoc(0);
+				dto.setGiasp(sp.getGiasp());
+			}else
+			{
+				double gia=sp.getGiasp();
+				dto.setGiagoc(gia);
+				dto.setGiasp(gia-(gia*discount)/100);
+			}
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+
 }

@@ -77,4 +77,16 @@ public class SanphamDAOImpl implements SanphamDAO{
 		return false;
 	}
 
+	@Override
+	public List<Integer> listTopidsp() {
+		String jql="SELECT e.sanpham.idsp,COUNT(e.id) FROM Cthoadon e WHERE e.hoadon.tinhtrang=1 GROUP BY e.sanpham.idsp ORDER BY COUNT(e.id)";
+		List<Object[]>results=entityManager.createQuery(jql).getResultList();
+		List<Integer> listidSp=new ArrayList<Integer>();
+    	for (Object[] result : results)
+    	{
+    		listidSp.add((Integer) result[0]);
+    	}
+    	return listidSp;
+	}
+
 }

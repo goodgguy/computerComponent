@@ -1,5 +1,6 @@
 package com.computer.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -67,6 +68,18 @@ public class AppUserDAO {
     	Query query = entityManager.createQuery(jql);
 		query.executeUpdate();
     	return true;
+    }
+    public List<Long> listBestUser()
+    {
+    	String jql="SELECT e.user.userId,COUNT(e.idhd) FROM Hoadon e WHERE e.tinhtrang=1 GROUP BY e.user.userId ORDER BY COUNT(e.idhd)";
+    	List<Object[]>results=entityManager.createQuery(jql).getResultList();
+    	List<Long> listidUser=new ArrayList<Long>();
+    	for (Object[] result : results)
+    	{
+    		Long id=(Long) result[0];
+    		listidUser.add(id);
+    	}
+    	return listidUser;
     }
 }
 

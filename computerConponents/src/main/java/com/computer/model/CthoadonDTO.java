@@ -9,6 +9,14 @@ public class CthoadonDTO {
 	private double tonggia;
 	private Sanpham sanpham;
 	private Hoadon hoadon;
+	private int checked;
+	
+	public int getChecked() {
+		return checked;
+	}
+	public void setChecked(int checked) {
+		this.checked = checked;
+	}
 	public int getId() {
 		return id;
 	}

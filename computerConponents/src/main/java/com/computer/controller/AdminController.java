@@ -346,7 +346,10 @@ public class AdminController {
 	 @RequestMapping("/thongke")
 	 public String infoUser(ModelMap map)
 	 {
-		 
+		 List<AppUserDTO>listUser=appuserService.getListTopUser();
+		 List<SanphamDTO>listSp=sanphamService.getListTopSp();
+		 map.addAttribute("listUser", listUser);
+		 map.addAttribute("sanpham", listSp);
 		 return "admin/thongke";
 	 }
 }

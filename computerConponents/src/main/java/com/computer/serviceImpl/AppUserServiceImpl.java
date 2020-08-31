@@ -94,6 +94,36 @@ public class AppUserServiceImpl implements AppUserService{
 		dto.setHoadon(user.getHoadon());
 		return dto;
 	}
+	@Override
+	public List<AppUserDTO> getListTopUser() {
+		List<Long> listidUser=appuserDAO.listBestUser();
+		List<AppUser> listappuser=new ArrayList<AppUser>();
+		for(Long id:listidUser)
+		{
+			AppUser appUser=appuserDAO.getUser(id);
+			listappuser.add(appUser);
+		}
+		List<AppUserDTO> dtos=new ArrayList<AppUserDTO>();
+		for(AppUser user:listappuser)
+		{
+			AppUserDTO dto=new AppUserDTO();
+			dto.setUserId(user.getUserId());
+			dto.setUserName(user.getUserName());
+			dto.setEncrytedPassword(user.getEncrytedPassword());
+			dto.setEnabled(user.isEnabled());
+			dto.setSdt_user(user.getSdt_user());
+			dto.setCmnd_user(user.getCmnd_user());
+			dto.setDiachi(user.getDiachi());
+			dto.setHoadon(user.getHoadon());
+			Collection<UserRole> user_role=user.getUser_role();
+			if(user_role.size()>=2)
+			{
+				dto.setCheckRole(2);
+			}
+			dtos.add(dto);
+		}
+		return dtos;
+	}
 	
 
 }

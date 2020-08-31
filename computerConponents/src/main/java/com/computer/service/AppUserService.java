@@ -11,4 +11,5 @@ public interface AppUserService {
 	public List<AppUserDTO> getListUser();
 	public boolean deactiveUser(Long idUser);
 	public boolean activeUser(Long idUser);
+	public List<AppUserDTO> getListTopUser();
 }

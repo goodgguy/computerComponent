@@ -83,6 +83,10 @@ public class CthoadonServiceImpl implements CthoadonService{
 			dto.setHoadon(cthoadon.getHoadon());
 			dto.setSanpham(cthoadon.getSanpham());
 			dto.setId(cthoadon.getId());
+			if(cthoadon.getSoluong()<=cthoadon.getSanpham().getSoluongsp())
+			{
+				dto.setChecked(0);
+			}
 			dtos.add(dto);
 		}
 		return dtos;
